@@ -26,13 +26,42 @@ export async function getProducts():Promise<Stripe.Product[]>{
     return products
 }
 
-export async function getCustomer(session:Session):Promise<Stripe.Customer>{
+
+export async function createStripeCustomer(email:string, first_name:string|null, last_name:string|null):Promise<string|null>{
+	
+	const name:string|undefined = first_name!=null || last_name!=null? `${first_name??""} ${last_name??""}`.trim() : undefined
+	const customer = await stripe.customers.create({
+		name:name,
+		email:email??undefined,
+	})
+	if(customer==null){
+		return null
+	}
+	return customer.id
+}
+
+
+
+export async function getCustomerByEmail(email:string|undefined):Promise<Stripe.Customer|undefined>{
+    if(email==null)
+        return undefined
+
     const customerApiResult:Stripe.ApiSearchResult<Stripe.Customer> = await stripe.customers.search({
-        query: `email:\'${session.user.email}\'`,
+        query: `email:\'${email}\'`,
         limit:1,
-        expand:["data[0].subscriptions"]
     });
 
     const customer:Stripe.Customer = customerApiResult.data[0]
     return customer
 }
+
+// export async function getCustomerById(customerId:string|undefined):Promise<Stripe.Customer|undefined>{
+//     if(customerId==null)
+//         return undefined
+
+//     const customerApiResult:Stripe.ApiSearchResult<Stripe.Customer> = await stripe.customers.retrieve(customerId);
+
+//     const customer:Stripe.Customer = customerApiResult.data[0]
+//     return customer
+// }
+

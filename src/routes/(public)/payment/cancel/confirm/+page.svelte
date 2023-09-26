@@ -2,7 +2,11 @@
 
 <script lang="ts">
 	import { invalidate } from "$app/navigation";
-    invalidate('data:profile')
+	import { onMount } from "svelte";
+
+    onMount(()=>{
+        invalidate('data:profile')
+    })
 </script>
 
 <div class="card flex flex-col justify-center items-center gap-4">

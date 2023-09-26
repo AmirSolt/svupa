@@ -5,7 +5,9 @@
 
     let profile:Profile|null = data.profile
     let products:Stripe.Product[] = data.products
-    let customer:Stripe.Customer = data.customer
+    let customer:Stripe.Customer|undefined = data.customer
+
+
 
     // const subscribedProductObject:string | Stripe.Product | Stripe.DeletedProduct | undefined = customer.subscriptions?.data[0].items.data[0].price.product
     // const subscribedProductId:string|undefined = typeof subscribedProductObject === "string"? subscribedProductObject : undefined
@@ -18,13 +20,13 @@
 	<h1>Wallet</h1>
 
     <div class="flex flex-col justify-center items-start gap-4 text-center">
-        {#if profile!=null && profile.wallet.product_id!=null}
-            <p>Current Plan: {profile.wallet.product_id}</p>
+        {#if profile!=null && profile.wallet.subscription_id!=null}
+            <p>Current Plan: {profile.wallet.subscription_id}</p>
 
-            <a href="/payment/change" class="btn variant-filled-error"> Change Plan </a>
-            <a href="/payment/cancel" class="btn variant-filled-error"> Cancel Subscription </a>
+            <a href="/payment/change" class="btn variant-ghost-secondary"> Change Plan </a>
+            <a href="/payment/cancel" class="btn variant-ghost-error"> Cancel Subscription </a>
         {:else}
-            <p>Choose a <a href="/payment/pricing">plan</a></p>  
+            <a href="/payment/pricing" class="btn variant-filled-secondary"> Choose a Plan </a>
         {/if}
 
 

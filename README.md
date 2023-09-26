@@ -3,6 +3,11 @@
 1. Setup new user trigger and function on supabase.
 2. Change auth email to token from link.
 3. (optional) setup an email
+4. to sync database types:
+<sub> 
+
+supabase gen types typescript --project-id {project_id} > ./src/lib/utils/database.types.ts
+</sub>
 
 Stripe Settings:
 1. create plans
@@ -15,10 +20,10 @@ Stripe Settings:
 
     - To create trigger-function:
         <sub> 
+
             begin
                 insert into public.wallets(id)
                 values(new.id);
-
                 insert into public.profiles(id, wallet, first_name, last_name)
                 values(
                     new.id,
@@ -31,6 +36,7 @@ Stripe Settings:
         </sub>
     - To create trigger use UI if it doesn't work:
         <sub> 
+
             create trigger on_new_user
             after insert on user
             for each row

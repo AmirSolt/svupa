@@ -8,7 +8,8 @@ interface Profile{
 
 
 interface Wallet{
-    product_id:string|null
+    customer_id:string|null
+    subscription_id:string|null
 }
 
 interface TokenConfirmEvent{

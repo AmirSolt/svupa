@@ -11,15 +11,15 @@ export const actions = {
         const session: Session|null = await getSession()
         const profile: Profile | null = await fetchProfile(session)
     
-        if(profile!=null && profile.wallet.product_id!=null){
-            profile.wallet.product_id
-            await stripe.subscriptions.cancel(profile.wallet.product_id);
+        if(profile!=null && profile.wallet.subscription_id!=null){
+            profile.wallet.subscription_id
+            await stripe.subscriptions.cancel(profile.wallet.subscription_id);
         }else{
             throw error(400, {
 				message: "This action is not authorized",
 			})
         }
-        throw redirect(302, '/payment/wallet')
+        throw redirect(302, '/payment/cancel/confirm')
     }
 }
 

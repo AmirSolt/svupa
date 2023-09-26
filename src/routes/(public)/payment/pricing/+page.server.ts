@@ -36,7 +36,7 @@ export const actions = {
             mode: 'subscription',
             success_url: `${PUBLIC_DOMAIN}/payment/success`,
             cancel_url: `${PUBLIC_DOMAIN}/payment/pricing`,
-            customer_email:session.user.email,
+            customer:session.user.user_metadata["customer_id"],
         });
 
         
