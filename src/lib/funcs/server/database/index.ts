@@ -91,3 +91,22 @@ export async function removeWalletSubscriptionId(customer_id:string|undefined|nu
     return true
    
 }
+
+
+export async function updateName(session:Session|null, first_name:string|null, last_name:string|null,):Promise<boolean>{
+    if (session) {
+        const { data, error: err } = await supabaseAdmin
+            .from('profiles')
+            .update({first_name, last_name})
+            .eq('id', session.user.id)
+            .single()
+        if (err != null) {
+            // throw error(400, {
+            //     message: err.message,
+            // })
+            return false
+        }
+        return true
+    }
+    return false
+}

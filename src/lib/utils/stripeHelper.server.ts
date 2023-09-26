@@ -40,7 +40,14 @@ export async function createStripeCustomer(email:string, first_name:string|null,
 	return customer.id
 }
 
-
+export async function getSubscription(subscription_id:string|undefined|null):Promise<Stripe.Subscription|undefined>{
+    if(subscription_id==null)
+        return undefined
+    const subscription:Stripe.Response<Stripe.Subscription> = await stripe.subscriptions.retrieve(
+        subscription_id,
+    );
+    return subscription
+}
 
 export async function getCustomerByEmail(email:string|undefined):Promise<Stripe.Customer|undefined>{
     if(email==null)

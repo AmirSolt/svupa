@@ -46,3 +46,8 @@ export const deleteUserSchema = z.object({
 export const pricingSchema = z.object({
 	priceId: z.string().min(1),
 })
+
+export const nameSchema= z.object({
+	first_name: z.string().optional(),
+	last_name: z.string().optional(),
+})
