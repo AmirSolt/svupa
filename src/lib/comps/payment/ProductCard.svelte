@@ -1,11 +1,10 @@
 <script lang="ts">
     import DataList from "$lib/comps/tools/DataList.svelte";
     import type {Stripe} from 'stripe';
-	export let product: Stripe.Product;
+	export let product: Stripe.Product|undefined;
     export let specialText:string|null=null
     export let specialColor:string|null=null
-
-    let price: Stripe.Price | undefined = typeof product.default_price === 'string' || product.default_price === null? undefined:product.default_price
+    let price: Stripe.Price | undefined = typeof product?.default_price === 'string' || product?.default_price === null? undefined:product?.default_price
     let currencySymbol:string = "$"
 
 
@@ -31,7 +30,7 @@
         <div class="flex flex-col gap-4 p-4">
     
             <h3 class="text-3xl font-semibold">
-                {product.name}
+                {product?.name}
             </h3>
             
             <div class="flex justify-center items-baseline">
@@ -45,7 +44,7 @@
     
         </div>
         <br>
-        <DataList list={product.features.map(feature=>feature.name)} />
+        <DataList list={product?.features.map(feature=>feature.name)} />
 
         <div class="flex justify-between items-center ">
             <div class="flex justify-center items-baseline">

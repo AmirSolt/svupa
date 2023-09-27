@@ -8,6 +8,7 @@
 	export let url: string | null = null;
 	export let buttonType: 'button' | 'submit' | 'reset' | null | undefined = 'submit';
 	export let clickCallback:any|undefined=undefined
+	export let loadingTimed:boolean = false
 
 
     async function clicked(){
@@ -15,7 +16,9 @@
 			clickCallback()
 		}
         isLoading = true
-        setTimeout(()=>{isLoading = false}, 2000)
+		if(loadingTimed){
+			setTimeout(()=>{isLoading = false}, 2000)
+		}
     }
 
 </script>

@@ -16,7 +16,7 @@
         </p>
     </div>
 
-    <a href="/profile/wallet" class="btn variant-ringed" >
-        ← Wallet
+    <a href="/profile/settings" class="btn variant-ringed" >
+        ← Settings
     </a>	
 </div>

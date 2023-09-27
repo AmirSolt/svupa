@@ -35,7 +35,6 @@ export async function fetchProfile(session:Session|null):Promise<Profile|null>{
                 message: err.message,
             })
         }else{
-            console.log(data["wallet"])
             const first_name:string|null=data["first_name"]
             const last_name:string|null=data["last_name"]
             const wallet:Wallet=data["wallet"]
@@ -65,10 +64,8 @@ export async function updateWalletCustomerId(session:Session|null, customer_id:s
         // throw error(400, {
         //     message: err.message,
         // })
-        console.log("error",err)
         return false
     }
-    console.log("data",data)
 
     return true
 }
@@ -94,8 +91,29 @@ export async function updateWalletSubscriptionId(customer_id:string|undefined|nu
    
 }
 
-export async function removeWalletSubscriptionId(customer_id:string|undefined|null):Promise<boolean>{
 
+export async function getWalletSubscriptionId(customer_id:string|undefined|null):Promise<string|undefined>{
+    if(customer_id==null){
+        return undefined
+    }
+    const { data, error: err } = await supabaseAdmin
+        .from('wallets')
+        .select("subscription_id")
+        .eq('customer_id', customer_id)
+        .single()
+
+    if (err != null) {
+        // throw error(400, {
+        //     message: err.message,
+        // })
+        return undefined
+    }
+    const subscription_id:string|undefined=data["subscription_id"]
+    return subscription_id
+}
+
+
+export async function removeWalletSubscriptionId(customer_id:string|undefined|null):Promise<boolean>{
     if(customer_id==null){
         return false
     }
@@ -111,7 +129,6 @@ export async function removeWalletSubscriptionId(customer_id:string|undefined|nu
         return false
     }
     return true
-   
 }
 
 

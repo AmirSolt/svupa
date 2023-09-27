@@ -14,9 +14,9 @@
     
     <ProductCard product={products[1]}  specialText="Most Popular" specialColor="primary"/>
 
-    <ProductCard product={products[2]}/>
+    <!-- <ProductCard product={products[2]}/>
 
-    <ProductCard product={products[3]} specialText="Best Value" specialColor="secondary"/>
+    <ProductCard product={products[3]} specialText="Best Value" specialColor="secondary"/> -->
 
 </div>
 
