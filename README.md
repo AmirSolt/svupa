@@ -25,11 +25,18 @@ A saas template for sveltekit + supabase. It includes Auth, payment(subscription
  $lib/utils/stripeHelper.server.ts in productIds:string[]
 ```
 3. Copy paste all API keys and webhook secret
-4. activate customer portal
+4. activate customer portal 
+(https://[DOMAIN]/payment/portal)
 5. configure customer portal 
 (check Cancellations immdiate)
 (check Subscription products)
 6. https://dashboard.stripe.com/settings/checkout -> limit customers to 1 subscription
+
+
+## 3. Analytics
+in app.html there are google and hotjar analytics tags. Remove or replace.
+
+
 ## Extra Help
 
 follow this video: https://www.youtube.com/watch?v=0N6M5BBe9AE&ab_channel=Supabase
