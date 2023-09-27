@@ -26,7 +26,7 @@ A saas template for sveltekit + supabase. It includes Auth, payment(subscription
 ```
 3. Copy paste all API keys and webhook secret
 4. activate customer portal
-
+5. configure customer portal (check Subscription products)
 
 ## Extra Help
 
