@@ -49,13 +49,9 @@
 		</h2>
 
 		{#if profile!=null && profile.wallet.subscription_id!=null}
-		
-			<form method="POST" action="?/createPortal" target="_blank" rel="noopener">
-				<button class="btn variant-filled-primary" type="submit"> <span>Manage Your Subscription</span> <ExternalLink size={20}/></button>
-			</form>
-		
+			<a href="/payment/portal" class="btn variant-filled-primary"><span>Manage Your Subscription</span> <ExternalLink size={20}/></a>
 		{:else}
-			<a href="/payment/pricing" class="btn variant-filled-primary"> <span>Choose a Plan</span> <ArrowRight size={20}/></a>
+			<a href="/payment/pricing" class="btn variant-filled-primary"><span>Choose a Plan</span> <ArrowRight size={20}/></a>
 		{/if}
 	</div>
 
