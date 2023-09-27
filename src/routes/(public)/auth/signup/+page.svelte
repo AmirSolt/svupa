@@ -34,10 +34,10 @@
 	<h1>Sign up</h1>
 
 
-	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
+	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full pt-4" use:enhance>
+		
 
-
-		<div class="flex flex-col justify-center items-start gap-4 w-full">
+		<div class="flex flex-col md:flex-row justify-start items-start gap-4 w-full">
 			<div>
 				<SuperTextInput
 					session={data.session} 
