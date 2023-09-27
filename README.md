@@ -26,8 +26,10 @@ A saas template for sveltekit + supabase. It includes Auth, payment(subscription
 ```
 3. Copy paste all API keys and webhook secret
 4. activate customer portal
-5. configure customer portal (check Subscription products)
-
+5. configure customer portal 
+(check Cancellations immdiate)
+(check Subscription products)
+6. https://dashboard.stripe.com/settings/checkout -> limit customers to 1 subscription
 ## Extra Help
 
 follow this video: https://www.youtube.com/watch?v=0N6M5BBe9AE&ab_channel=Supabase

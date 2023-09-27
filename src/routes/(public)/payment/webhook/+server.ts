@@ -1,7 +1,7 @@
 import type { Stripe } from 'stripe'
 import { stripe } from '$lib/utils/stripeHelper.server.js'
 import { PRIVATE_WEBHOOK_SECRET } from '$env/static/private';
-import {updateWalletSubscriptionId, removeWalletSubscriptionId, getWalletSubscriptionId} from '$lib/funcs/server/database/index.js'
+import {updateWalletSubscriptionId, removeWalletSubscriptionId} from '$lib/funcs/server/database/index.js'
 
 
 function toBuffer(ab: ArrayBuffer): Buffer {
@@ -70,23 +70,6 @@ export const POST = async ({ request }) => {
                 console.log("subscriptionId", subscriptionId)
                 console.log("customerId", customerId)
     
-                // cancel previous subscription
-                const previousSubscriptionId = await getWalletSubscriptionId(customerId)
-                if(previousSubscriptionId){
-                    const cancelSuccess = await stripe.subscriptions.cancel(previousSubscriptionId);
-    
-                    if(!cancelSuccess){
-                        console.log('====== Failed Update =======')
-                        return new Response(JSON.stringify({
-                            error: `Updating wallet with the new product id was unsuccessful`
-                        }),
-                            {
-                                status: 500,
-                                headers: {},
-                        })
-                    }
-                }
-    
                 // update subscription in database
                 const updateSuccess:boolean = await updateWalletSubscriptionId(customerId, subscriptionId)
     
@@ -107,10 +90,31 @@ export const POST = async ({ request }) => {
             break;
         case 'customer.subscription.updated':{
 
-                // console.log('=====================================')
-                // console.log('customer.subscription.updated')
-                // console.log(data.object)
-                // console.log('=====================================')
+                console.log('=====================================')
+                console.log('customer.subscription.updated')
+                
+                const subscriptionId:string|undefined = data.object.id
+                const customerId:string|undefined = data.object.customer??undefined
+    
+                console.log("subscriptionId", subscriptionId)
+                console.log("customerId", customerId)
+    
+                // update subscription in database
+                const updateSuccess:boolean = await updateWalletSubscriptionId(customerId, subscriptionId)
+    
+                if(!updateSuccess){
+                    console.log('====== Failed Update =======')
+                    return new Response(JSON.stringify({
+                        error: `Updating wallet with the new product id was unsuccessful`
+                    }),
+                        {
+                            status: 500,
+                            headers: {},
+                    })
+                }
+                
+                console.log('====== Successful Update =======')
+                console.log('=====================================')
             }
             break;
         case 'customer.subscription.deleted':{
@@ -123,21 +127,16 @@ export const POST = async ({ request }) => {
                 console.log("subscriptionId", subscriptionId)
                 console.log("customerId", customerId)
 
-
-                // remove subscription_id in database if it matches the event subscriptionId
-                const currentSubscriptionId = await getWalletSubscriptionId(customerId)
-                if(currentSubscriptionId!= null && currentSubscriptionId == subscriptionId){
-                    const subscriptionIdCancelledSuccess:boolean = await removeWalletSubscriptionId(customerId)
-                    if(!subscriptionIdCancelledSuccess){
-                        console.log('====== Failed Cancel =======')
-                        return new Response(JSON.stringify({
-                            error: `Updating wallet with the new product id was unsuccessful`
-                        }),
-                            {
-                                status: 500,
-                                headers: {},
-                        })
-                    }
+                const subscriptionIdCancelledSuccess:boolean = await removeWalletSubscriptionId(customerId)
+                if(!subscriptionIdCancelledSuccess){
+                    console.log('====== Failed Cancel =======')
+                    return new Response(JSON.stringify({
+                        error: `Updating wallet with the new product id was unsuccessful`
+                    }),
+                        {
+                            status: 500,
+                            headers: {},
+                    })
                 }
 
                 
