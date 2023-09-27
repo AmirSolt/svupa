@@ -2,25 +2,27 @@
 
 </script>
 
-<div class="flex flex-col justify-center items-center text-center gap-8 pt-16">
-    <div class="flex flex-col justify-center items-center text-center gap-2">
-        <h1 class="text-6xl">
-            Bluh
-            <strong class="text-6xl md:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 from-10% via-purple-500 via-30% to-pink-500 to-90%">
-                Bluh
-            </strong> 
-            Bluh
-        </h1>
-        <div>
-            <p class="text-2xl">
-                [One Liner]
-            </p>
+<div class="md:max-w-6xl w-full">
+    <div class="flex flex-col justify-center items-center text-center gap-8 pt-16">
+        <div class="flex flex-col justify-center items-center text-center gap-2">
+            <h1 class="text-6xl">
+                Svelte + Supabase
+                =
+                <strong class="text-6xl md:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 from-10% via-purple-500 via-30% to-pink-500 to-90%">
+                    Svupa
+                </strong> 
+            </h1>
+            <div>
+                <p class="text-2xl">
+                    [Text]
+                </p>
+            </div>
+            <small class="text-slate-300">
+                *No credit card required
+            </small>
         </div>
-        <small class="text-slate-300">
-            *No credit card required
-        </small>
+        <a href="/auth/signup" class="btn text-2xl variant-filled-primary w-full md:w-1/2">
+            Action Button
+        </a>
     </div>
-    <a href="/auth/signup" class="btn text-2xl variant-filled-primary w-full md:w-1/2">
-        Action Button
-    </a>
 </div>

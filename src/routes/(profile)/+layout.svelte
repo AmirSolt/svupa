@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
-	import Rail from '$lib/comps/basic/Rail.svelte';
-
+	
 	import Header from '$lib/comps/basic/Header.svelte'
+	import Rail from '$lib/comps/basic/Rail.svelte';
 	import Footer from '$lib/comps/basic/Footer.svelte'
 
 

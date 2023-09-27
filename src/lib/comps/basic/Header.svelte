@@ -44,7 +44,7 @@
                     Pricing 
                 </a>
                 {#if session?.user}
-                    <a class="btn-icon variant-ringed" href="/profile/settings"> <User/> </a>
+                    <a class="btn-icon variant-ringed" href="/profile/dashboard"> <User/> </a>
                 {:else}
                     <a class="btn btn-sm md:btn-md variant-filled" href="/auth/signin"> Log in </a>
                     <a class="btn btn-sm md:btn-md variant-filled-primary" href="/auth/signup"> Sign up </a>

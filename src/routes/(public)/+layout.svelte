@@ -24,9 +24,9 @@
 
 
 	<div class="flex justify-center w-full p-4 pt-2">
-		<div class="md:max-w-4xl w-full">
+		
 			<slot />
-		</div>
+		
 	</div>
 
 

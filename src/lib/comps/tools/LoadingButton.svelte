@@ -3,7 +3,6 @@
 
 	let isLoading: boolean = false;
 
-	export let text: string;
 	export let color: string = 'variant-filled';
 	export let url: string | null = null;
 	export let buttonType: 'button' | 'submit' | 'reset' | null | undefined = 'submit';
@@ -26,7 +25,7 @@
 {#if url}
 	{#if !isLoading}
 		<a on:click={clicked} href={url} class="btn {color} w-24">
-			{text}
+			<slot name="text" />
 		</a>
 	{:else}
 		<div class="btn {color}">
@@ -36,7 +35,7 @@
 {:else}
 	<button on:click={clicked} type={buttonType} class="btn {color} w-24">
 		{#if !isLoading}
-			{text}
+			<slot name="text" />
 		{:else}
 			<ProgressRadial width="w-6" stroke={100} />
 		{/if}

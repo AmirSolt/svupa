@@ -5,7 +5,7 @@
 	<div class="flex flex-col justify-center items-start">
 		<img src="/logo.png" alt="Logo" width="80" height="80" />
 		<p class="text-xl font-bold">Svupa</p>
-		<p>[one liner]</p>
+		<p>[Text]</p>
 		<p>support@Svupa.com</p>
 	</div>
 	<div class="flex flex-wrap justify-center items-center gap-8">

@@ -19,7 +19,7 @@
 </script>
 
 
-<div class="card">
+<div class="card-mod">
 	<h1>Sign in</h1>
 
 	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>

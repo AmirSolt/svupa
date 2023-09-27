@@ -30,7 +30,7 @@
 
 
 
-<div class="card">
+<div class="card-mod">
 	<h1>Sign up</h1>
 
 

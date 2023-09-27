@@ -9,8 +9,10 @@ export const stripe = new Stripe(PRIVATE_STRIPE_KEY, {
 });
 
 const productIds:string[] = [
-    "prod_OiMoYkpdvFwkZa",
     "prod_OiMonV91FhfV62",
+    "prod_OiMoYkpdvFwkZa",
+    "prod_OiRt98YzBex0Kn",
+    "prod_OiRsheyzhMrgyh",
 ]
 
 export async function getProducts():Promise<Stripe.Product[]>{
@@ -18,10 +20,9 @@ export async function getProducts():Promise<Stripe.Product[]>{
         ids: productIds,
         expand:['data.default_price']
     });
-    
     const products:Stripe.Product[] = productsApiList.data
-
-    return products
+    
+    return products.sort((a, b) => productIds.indexOf(a.id) - productIds.indexOf(b.id));
 }
 
 
@@ -71,4 +72,5 @@ export async function getCustomerByEmail(email:string|undefined):Promise<Stripe.
 //     const customer:Stripe.Customer = customerApiResult.data[0]
 //     return customer
 // }
+
 

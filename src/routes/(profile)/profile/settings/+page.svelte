@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {ExternalLink, ArrowRight} from 'lucide-svelte'
 	import { superForm } from 'sveltekit-superforms/client';
 	import { nameSchema } from '$lib/utils/schema';
 	import { toastError, toastSuccess } from '$lib/utils/toastHelper.js';
@@ -39,64 +40,77 @@
 </script>
 
 
-<div class="card flex flex-col justify-center items-start gap-4 text-center">
+<div class="card-mod flex flex-col justify-center items-start gap-4">
 	<h1>Settings</h1>
 
+	<div class="p-2 space-y-4">
+		<h2>
+			Wallet
+		</h2>
 
+		{#if profile!=null && profile.wallet.subscription_id!=null}
+		
+			<form method="POST" action="?/createPortal" target="_blank" rel="noopener">
+				<button class="btn variant-filled-primary" type="submit"> <span>Manage Your Subscription</span> <ExternalLink size={20}/></button>
+			</form>
+		
+		{:else}
+			<a href="/payment/pricing" class="btn variant-filled-primary"> <span>Choose a Plan</span> <ArrowRight size={20}/></a>
+		{/if}
+	</div>
 
-	{#if profile!=null && profile.wallet.subscription_id!=null}
-		<form method="POST" action="?/createPortal" target="_blank" rel="noopener">
-			<button class="btn variant-filled-secondary" type="submit"> Manage Your Subscription </button>
+	<div class="card-mod p-2 space-y-4">
+		<h2>
+			Profile
+		</h2>
+		<form method="POST" action="?/changeName">
+			<div class="flex flex-col justify-center items-start gap-4 w-full text-start">
+					<SuperTextInput
+						session={data.session}
+						isSessionOnly={true}
+						formAttrName="first_name"
+						{form}
+						{constraints}
+						{errors}
+						placeholder="(optional)"
+						autocomplete="given-name"
+					>
+						<div slot="head">
+							<p>First Name</p>
+						</div>
+					</SuperTextInput>
+					<SuperTextInput
+						session={data.session}
+						isSessionOnly={true}
+						formAttrName="last_name"
+						{form}
+						{constraints}
+						{errors}
+						placeholder="(optional)"
+						autocomplete="family-name"
+					>
+						<div slot="head">
+							<p>Last Name</p>
+						</div>
+					</SuperTextInput>
+				<button type="submit" class="btn variant-ghost-secondary w-full"> Save </button>
+			</div>
 		</form>
-	
-	{:else}
-		<a href="/payment/pricing" class="btn variant-filled-secondary"> Choose a Plan </a>
-	{/if}
+	</div>
 
-	<hr>
-
-	<form method="POST" action="?/changeName">
-		<div class="flex flex-col justify-center items-start gap-4 w-full text-start">
-				<SuperTextInput
-					session={data.session}
-					isSessionOnly={true}
-					formAttrName="first_name"
-					{form}
-					{constraints}
-					{errors}
-					placeholder="(optional)"
-					autocomplete="given-name"
-				>
-					<div slot="head">
-						<p>First Name</p>
-					</div>
-				</SuperTextInput>
-				<SuperTextInput
-					session={data.session}
-					isSessionOnly={true}
-					formAttrName="last_name"
-					{form}
-					{constraints}
-					{errors}
-					placeholder="(optional)"
-					autocomplete="family-name"
-				>
-					<div slot="head">
-						<p>Last Name</p>
-					</div>
-				</SuperTextInput>
-			<button type="submit" class="btn variant-filled-primary w-full"> Save </button>
-		</div>
-	</form>
-
-
-
-	<hr>
-
-	<div class="flex flex-col justify-center items-start gap-4 text-center">
-		<LoadingButton url="/auth/signout" color="variant-ghost-error" text="Sign Out" />
-		<a href="/auth/resetPassword/update" class="btn variant-soft-warning"> Reset Password </a>
-		<a href="/auth/deleteAccount" class="btn variant-soft-error"> Delete Account </a>
-	</div>	
+	<div class="p-2 space-y-4">
+		<h2>
+			Authentication
+		</h2>
+		<div class="flex flex-col justify-center items-start gap-2 text-center">
+			<LoadingButton url="/auth/signout" color="btn variant-soft">
+				<span slot="text" >
+					Sign Out
+				</span>
+			</LoadingButton>
+			<a href="/auth/resetPassword/update" class="btn variant-soft"> Reset Password </a>
+			<a href="/auth/deleteAccount" class="btn variant-soft"> Delete Account </a>
+		</div>	
+	</div>
 </div>
 	

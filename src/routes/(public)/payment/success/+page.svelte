@@ -3,7 +3,7 @@
 
 </script>
 
-<div class="card flex flex-col justify-center items-center gap-4">
+<div class="card-mod flex flex-col justify-center items-center gap-4">
 
     <CheckCircle color="#15CE48" size={200} />
 

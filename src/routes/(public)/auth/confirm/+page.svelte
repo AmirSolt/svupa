@@ -33,7 +33,7 @@
 
 
 
-<div class="card">
+<div class="card-mod">
 
     <MailCheck color="#15CE48" size={100} />
 

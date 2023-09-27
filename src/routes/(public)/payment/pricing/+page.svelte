@@ -23,10 +23,10 @@
     
 		<div class="flex flex-col justify-center text-center gap-4">
 			<h2 class="text-4xl md:text-5xl font-extrabold ">
-				[One Liner]
+				[Text]
 			</h2>
 			<p class="text-lg">
-				[One Liner]
+				[Text]
 			</p>
 			
 		</div>
