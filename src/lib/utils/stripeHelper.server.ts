@@ -9,10 +9,10 @@ export const stripe = new Stripe(PRIVATE_STRIPE_KEY, {
 });
 
 const productIds:string[] = [
-    "prod_OiMonV91FhfV62",
-    "prod_OiMoYkpdvFwkZa",
-    "prod_OiRt98YzBex0Kn",
-    "prod_OiRsheyzhMrgyh",
+    "prod_OiSWYkKNW6PXPP",
+    "prod_OiSWhYnDnIqlLy",
+    "prod_OiSX21VGKnf2dC",
+    "prod_OiSXr3cOOsqFVV",
 ]
 
 export async function getProducts():Promise<Stripe.Product[]>{
