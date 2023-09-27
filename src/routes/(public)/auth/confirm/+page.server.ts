@@ -30,6 +30,6 @@ export const actions = {
 				message: tokenError.message,
 			})
 		}
-		throw redirect(302, form.data.redirectPath??"/")
+		throw redirect(302, form.data.redirectPath??"/profile/dashboard")
 	}
 }

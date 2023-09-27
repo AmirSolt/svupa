@@ -28,20 +28,11 @@ export const actions = {
 		const first_name:string|null = form.data.first_name??null
 		const last_name:string|null = form.data.last_name??null
 
-		const customer_id = await createStripeCustomer(form.data.email, first_name, last_name)
-		if(customer_id==null){
-			throw error(400, {
-				message: "Sorry, there was an error. Please try later.",
-			})
-		}
-
-
 		const { data, error:signupError } = await event.locals.supabaseAuthServer.auth.signUp({
 			email: form.data.email,
 			password: form.data.password,
 			options: {
 				data: {
-					customer_id:customer_id,
 					first_name: first_name,
 					last_name: last_name,
 				}

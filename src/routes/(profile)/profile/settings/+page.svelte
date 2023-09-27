@@ -13,7 +13,7 @@
 	let { session, profile } = data;
 	$: ({ profile } = data);
 
-	const { form, errors, constraints, enhance, tainted } = superForm(data.form, {
+	const { form, errors, constraints, tainted } = superForm(data.form, {
 		taintedMessage: 'Make sure to save your progress!!!',
 		validators: nameSchema,
 		onError: (result) => {
@@ -43,7 +43,19 @@
 	<h1>Settings</h1>
 
 
-	<form method="POST" use:enhance>
+
+	{#if profile!=null && profile.wallet.subscription_id!=null}
+		<form method="POST" action="?/createPortal" target="_blank" rel="noopener">
+			<button class="btn variant-filled-secondary" type="submit"> Manage Your Subscription </button>
+		</form>
+	
+	{:else}
+		<a href="/payment/pricing" class="btn variant-filled-secondary"> Choose a Plan </a>
+	{/if}
+
+	<hr>
+
+	<form method="POST" action="?/changeName">
 		<div class="flex flex-col justify-center items-start gap-4 w-full text-start">
 				<SuperTextInput
 					session={data.session}
@@ -76,6 +88,8 @@
 			<button type="submit" class="btn variant-filled-primary w-full"> Save </button>
 		</div>
 	</form>
+
+
 
 	<hr>
 

@@ -30,6 +30,6 @@ export const actions = {
 				message: signinError.message,
 			})
 		}
-		throw redirect(302, '/profile/generate')
+		throw redirect(302, '/profile/dashboard')
 	}
 }

@@ -25,6 +25,10 @@ A saas template for sveltekit + supabase. It includes Auth, payment(subscription
  $lib/utils/stripeHelper.server.ts in productIds:string[]
 ```
 3. Copy paste all API keys and webhook secret
+4. activate customer portal
+5. enable https://dashboard.stripe.com/settings/checkout -> Limit customers to 1 subscription -> customer portal
+
+
 ## Extra Help
 
 follow this video: https://www.youtube.com/watch?v=0N6M5BBe9AE&ab_channel=Supabase

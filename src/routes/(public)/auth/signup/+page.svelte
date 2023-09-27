@@ -20,7 +20,7 @@
 	$:if($form.email){
 		tokenConfirmEvent.set({
 			email:$form.email,
-			redirectPath:"/",
+			redirectPath:"/profile/dashboard",
 		})
 	}
 

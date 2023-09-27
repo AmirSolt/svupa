@@ -27,17 +27,19 @@ export async function getProducts():Promise<Stripe.Product[]>{
 }
 
 
-export async function createStripeCustomer(email:string, first_name:string|null, last_name:string|null):Promise<string|null>{
-	
+export async function createStripeCustomer(email:string|undefined, first_name:string|null, last_name:string|null):Promise<Stripe.Customer|undefined>{
+    if(email==null){
+        return undefined
+    }
 	const name:string|undefined = first_name!=null || last_name!=null? `${first_name??""} ${last_name??""}`.trim() : undefined
 	const customer = await stripe.customers.create({
 		name:name,
 		email:email??undefined,
 	})
 	if(customer==null){
-		return null
+		return undefined
 	}
-	return customer.id
+	return customer
 }
 
 export async function getSubscription(subscription_id:string|undefined|null):Promise<Stripe.Subscription|undefined>{

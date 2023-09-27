@@ -8,6 +8,8 @@
 	import Header from '$lib/comps/basic/Header.svelte'
 	import Footer from '$lib/comps/basic/Footer.svelte'
 
+
+
 </script>
 
 

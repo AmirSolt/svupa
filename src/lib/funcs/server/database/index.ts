@@ -29,7 +29,6 @@ export async function fetchProfile(session:Session|null):Promise<Profile|null>{
             `)
             .eq('id', session?.user.id)
             .single()
-            
         if (err != null) {
             
             throw error(400, {
@@ -49,6 +48,29 @@ export async function fetchProfile(session:Session|null):Promise<Profile|null>{
         return profile
     }
     return null
+}
+
+
+export async function updateWalletCustomerId(session:Session|null, customer_id:string|undefined|null):Promise<boolean>{
+    if(customer_id==null && session==null){
+        return false
+    }
+
+    const { data, error: err } = await supabaseAdmin
+        .from('wallets')
+        .update({customer_id})
+        .eq('id', session?.user.id)
+        .single()
+    if (err != null) {
+        // throw error(400, {
+        //     message: err.message,
+        // })
+        console.log("error",err)
+        return false
+    }
+    console.log("data",data)
+
+    return true
 }
 
 

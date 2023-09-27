@@ -36,7 +36,7 @@
             
             <div class="flex justify-center items-baseline">
                 <span class="mr-2">
-                    {currencySymbol}{price?.unit_amount?(price.unit_amount/100).toFixed(2):null}
+                    {currencySymbol}{price?.unit_amount?Math.floor(price.unit_amount/100):null}
                 </span>
                 <span >{price?.currency}</span>
             </div>
@@ -54,7 +54,7 @@
             <form method="post" >
                 <input type="hidden" name="priceId" value={price?.id} />
                 <button class="btn text-lg md:text-2x w-24 {specialColor ? `variant-filled-${specialColor}` : 'variant-filled'}" type="submit"> 
-                    {currencySymbol}{price?.unit_amount?(price.unit_amount/100).toFixed(2):null}
+                    {currencySymbol}{price?.unit_amount?Math.floor(price.unit_amount/100):null}
                 </button>
             </form>
     
